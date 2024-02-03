@@ -1,4 +1,3 @@
-# amer was HERE
 import pygame
 import Sprite
 

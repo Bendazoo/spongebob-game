@@ -17,7 +17,7 @@ SCREEN_LENGTH = 1200
 SCREEN_WIDTH = 800
 screen = pygame.display.set_mode([SCREEN_LENGTH,SCREEN_WIDTH])
 
-# Initializing Exit-Loop
+# Initializing Game-Loop
 running = True
 while running:
     for event in pygame.event.get():

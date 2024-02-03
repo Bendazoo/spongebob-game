@@ -4,14 +4,15 @@ from pygame.locals import (
     K_DOWN,
     K_LEFT,
     K_RIGHT,
+    RLEACCEL
 )
 
 
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.Surface((75, 25))
-        self.surf.fill((255, 255, 255))
+        self.surf = pygame.image.load("spongebob_sprite.png").convert()
+        self.surf.set_colorkey((140,255,140), RLEACCEL)
         self.rect = self.surf.get_rect()
 
     def movement(self, pressed_keys):

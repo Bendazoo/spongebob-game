@@ -31,11 +31,10 @@ while running:
             running = False
 
     pressed_keys = pygame.key.get_pressed()
-
     player.movement(pressed_keys)
 
     screen.fill((255,255,255 ))
-    screen.blit(player.surf, player.rect)
+    screen.blit(player.sponge_dir, player.rect)
 
     pygame.display.flip()
 

@@ -10,6 +10,7 @@ from pygame.locals import (
 SCREEN_LENGTH = 1200
 SCREEN_WIDTH = 800
 screen = pygame.display.set_mode([SCREEN_LENGTH,SCREEN_WIDTH])
+pygame.display.set_caption('Spongebob Game')
 
 # Creating Sprite Class
 player = Sprite.Player()
@@ -33,7 +34,7 @@ while running:
 
     player.movement(pressed_keys)
 
-    screen.fill((0,0,0))
+    screen.fill((255,255,255 ))
     screen.blit(player.surf, player.rect)
 
     pygame.display.flip()

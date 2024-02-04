@@ -11,8 +11,9 @@ from pygame.locals import (
 class Player(pygame.sprite.Sprite):
     def __init__(self):
         super(Player, self).__init__()
-        self.surf = pygame.image.load("spongebob_sprite.png").convert()
-        self.surf.set_colorkey((140,255,140), RLEACCEL)
+
+        self.surf = pygame.image.load("images/sp_2.png").convert_alpha()
+        self.surf = pygame.transform.scale_by(self.surf, 3)
         self.rect = self.surf.get_rect()
 
     def movement(self, pressed_keys):

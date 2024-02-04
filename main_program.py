@@ -9,7 +9,7 @@ from pygame.locals import (
 )
 SCREEN_LENGTH = 1200
 SCREEN_WIDTH = 800
-screen = pygame.display.set_mode([SCREEN_LENGTH,SCREEN_WIDTH])
+screen = pygame.display.set_mode([SCREEN_LENGTH, SCREEN_WIDTH])
 
 # Creating Sprite Class
 player = Sprite.Player()
@@ -33,7 +33,7 @@ while running:
 
     player.movement(pressed_keys)
 
-    screen.fill((0,0,0))
+    screen.fill((0, 0, 0))
     screen.blit(player.surf, player.rect)
 
     pygame.display.flip()

@@ -94,5 +94,65 @@ class RunningState(PlayerState):
             return StandingState(self.parent, self.flip)
         if not self.flip and not pressed[keys.K_RIGHT]:
             return StandingState(self.parent, self.flip)
+        if pressed[keys.K_SPACE] and not pressed[keys.K_LEFT] and not pressed[keys.K_RIGHT]:
+            return JumpingState(self.parent, self.flip)
 
+class JumpingState(PlayerState):
+    """
+    State for when the player is jumping.
+    """
+    def __init__(self, parent, flip=False):
+        """
+        Initialize and set the vertical speed
+        to be moving in the appropriate direction.
+        @parent : Reference to the player object.
+        @flip : Horizontal direction for the animation
+        and movement as a boolean. True for right, False
+        for left.
+        """
+        super().__init__(parent, "jump", flip)
+    
+    def processInput(self, pressed):
+        """
+        If in air and space key is released, switch
+        to falling.
+        """
+        if self.flip and not pressed[keys.K_SPACE]:
+            return FallingState(self.parent, self.flip)
+        if not self.flip and not pressed[keys.K_SPACE]:
+            return FallingState(self.parent, self.flip)
 
+class FallingState(PlayerState):
+    """
+    State for when the player is falling.
+    """
+    def __init__(self, parent, flip=False):
+        """
+        Initialize and set vertical speed
+        to be moving in the appropriate direction.
+        @parent : Reference to the player object.
+        @flip : Horizontal direction for the animation
+        and movement as a boolean. True for right, False
+        for left.
+        """
+        super().__init__(parent, "fall", flip)
+
+    def processInput(self, pressed):
+        """
+        If on the ground and nothing is pressed,
+        switch to standing state.
+        Else if on the ground and space key is pressed,
+        switch to jumping state.
+        Else if on the ground and left key is pressed,
+        switch to running state.
+        Else if on the ground and right key is pressed,
+        switch to running state.
+        """
+        if not pressed[keys.K_SPACE] or not pressed[keys.K_LEFT] or not pressed[keys.K_RIGHT]:
+            return StandingState(self.parent, self.flip)
+        if pressed[keys.K_SPACE]:
+            return JumpingState(self.parent, self.flip)
+        if not self.flip and pressed[keys.K_LEFT]:
+            return RunningState(self.parent, self.flip)
+        if self.flip and pressed[keys.K_RIGHT]:
+            return RunningState(self.parent, self.flip)
